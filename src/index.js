@@ -3,7 +3,7 @@ const router = require('./routes')
 const db = require('./db')
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
 app.use(express.json())
 app.use(express.urlencoded({
@@ -12,7 +12,7 @@ app.use(express.urlencoded({
 
 app.get('/', (req, res) => {
     res.status(200).json({
-        codde: 200,
+        code: 200,
         status: 'success',
         message: 'Welcome to Verify Payments API'
     })
