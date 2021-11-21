@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.status(200).json({
         code: 200,
         status: 'success',
-        message: 'Welcome to Verify Payments API'
+        message: 'Welcome to Verify Account API'
     })
 })
 
