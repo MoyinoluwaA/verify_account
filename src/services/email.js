@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-const sendEmail = async(body, type) => {
+const sendEmail = async(body, first_name, type) => {
     try {
         const { email } = body
     
@@ -20,14 +20,16 @@ const sendEmail = async(body, type) => {
         let info = await transporter.sendMail({
             from: '"Moyin from Verify Account" <dayoh14@gmail.com>',
             to: email,
-            subject: type === reset ? 'Reset password' : 'Verify Email',
-            html: type === reset ? 
+            subject: type === 'reset' ? 'Reset password' : 'Verify your email for VeriA',
+            html: type === 'reset' ? 
                 `<b>Reset your password</b>. 
                 Click 
                 <a href="${process.env.FRONTEND_BASE_URL}/users/reset/${email}" target='_blank'>here</a>
                 to reset your password`
             :
-                `<b>Verify email to be able to continue with your account</b>. 
+                `<b>You're nearly there!</b><br/>
+                <p>Hi ${first_name},</p>
+                <p>To finish setting up your account and start using VeriA, confirm we've got the right email for you.</p> 
                 Click 
                 <a href="${process.env.FRONTEND_BASE_URL}/users/verify/${email}" target='_blank'>here</a>
                 to verify your email`, 
@@ -37,7 +39,7 @@ const sendEmail = async(body, type) => {
         
     }
     catch(err) {
-        next(err)
+        console.log(err)
     }
 }
 

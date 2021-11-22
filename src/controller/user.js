@@ -68,7 +68,7 @@ const forgotPassword = async(req, res, next) => {
     try {
         const { user } = req
         const token = await generateToken(user, 'reset')
-        await sendEmail(body, 'reset')
+        await sendEmail(body, user.first_name, 'reset')
 
         res.status(200).json({
             status: 'success',

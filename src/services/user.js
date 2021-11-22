@@ -10,7 +10,7 @@ const UserService = () => {
         const encryptedPassword = await hashPassword(password)
 
         const payload = [first_name, last_name, email, encryptedPassword]
-        await sendEmail(body, 'verify')
+        await sendEmail(body, first_name, 'verify')
         return db.one(queries.addUser, payload)
     }
 

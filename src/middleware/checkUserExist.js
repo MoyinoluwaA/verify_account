@@ -12,7 +12,7 @@ const checkUserExists = (type) => async(req, res, next) => {
             isUser = await UserService.getUser(email)
         }
 
-        [ user ] = isUser
+        const [ user ] = isUser
 
         if (type === 'register') {
             if (user) {
